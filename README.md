@@ -8,3 +8,4 @@
 5. raw data converted to json.
 6. written all the functions for problems.
 7. written a util function to convert the resutls to json.
+8. written a index.js file to combine all the functions into one.
