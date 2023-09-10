@@ -10,3 +10,4 @@
 7. written a util function to convert the resutls to json.
 8. written a index.js file to combine all the functions into one.
 9. got all the outputs and stored them in a folder.
+10. Written test cases for all the functions.

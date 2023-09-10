@@ -1,0 +1,11 @@
+[
+    { "winner": "RCB", "toss_winner": "CSK" },
+    { "winner": "KKR", "toss_winner": "KKR" },
+    { "winner": "RCB", "toss_winner": "RCB" },
+    { "winner": "CSK", "toss_winner": "CSK" },
+    { "winner": "KKR", "toss_winner": "KKR" },
+    { "winner": "RCB", "toss_winner": "CSK" },
+    { "winner": "RCB", "toss_winner": "KKR" },
+    { "winner": "RCB", "toss_winner": "CSK" },
+    { "winner": "KKR", "toss_winner": "CSK" }
+  ]
