@@ -7,3 +7,4 @@
 4. fuction written for conversion of csv to json.
 5. raw data converted to json.
 6. written all the functions for problems.
+7. written a util function to convert the resutls to json.
