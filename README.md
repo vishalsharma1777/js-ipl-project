@@ -11,3 +11,8 @@
 8. written a index.js file to combine all the functions into one.
 9. got all the outputs and stored them in a folder.
 10. Written test cases for all the functions.
+
+## created a new branch webapp
+1. made the util function to read the json data from output files.
+2. created index.html, ipl.js and style.css files.
+3. started a static server using http-server. It shows the data in the browser in raw format.
