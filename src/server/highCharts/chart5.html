@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Toss And Match Both Wins</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+  <body>
+    <div id="chart-5"></div>
+    <div style="text-align: center">
+      <a href="http://localhost:5000"><button>HOME</button></a></br>
+    </div>
+    <script>
+      fetch('http://localhost:5000/data/5')
+        .then((response) => response.json())
+        .then((data) => {
+          const columnData = data;
+
+          Highcharts.chart('chart-5', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Won Both Toss & Match'
+            },
+            subtitle: {
+              text: 'Source: IPL Project'
+            },
+            xAxis: {
+              categories: Object.keys(columnData),
+              crosshair: true
+            },
+            yAxis: {
+              min: 5,
+              title: {
+                text: 'Toss and matches won'
+              }
+            },
+            plotOptions: {
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+            },
+            series: [
+              {
+                name: 'Teams',
+                data: Object.values(columnData)
+              }
+            ]
+          });
+        })
+        .catch((error) => console.error('Error loading JSON data:', error));
+    </script>
+  </body>
+</html>

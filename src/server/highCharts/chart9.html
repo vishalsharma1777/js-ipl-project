@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Best Economy In Super Over</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+  <body>
+    <div id="chart-9"></div>
+    <div style="text-align: center">
+      <a href="http://localhost:5000"><button>HOME</button></a></br>
+    </div>
+    <script>
+
+      fetch('http://localhost:5000/data/9')
+        .then((response) => response.json())
+        .then((data) => {
+          const columnData = data;
+          console.log(columnData);
+
+
+          Highcharts.chart('chart-9', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Best Economy In Super Over'
+            },
+            subtitle: {
+              text: 'Source: IPL Project'
+            },
+            xAxis: {
+              categories: columnData.map((item) => item.name),
+              crosshair: true
+            },
+            yAxis: {
+              min: 0,
+              title: {
+                text: 'Economy'
+              }
+            },
+            plotOptions: {
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+            },
+            series: [
+              {
+                name: 'Bowler',
+                data: columnData.map((item) => item.economy)
+              }
+            ]
+          });
+        })
+        .catch((error) => console.error('Error loading JSON data:', error));
+    </script>
+  </body>
+</html>

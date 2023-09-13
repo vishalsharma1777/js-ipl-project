@@ -51,9 +51,7 @@ const EconomicalBowlers = (deliveriesData, matchesData) => {
   }));
 
   finalBowlers.sort((a, b) => a.economy - b.economy);
-  const topTenEconomicalBowlers = finalBowlers
-    .slice(0, 10)
-    .map((bowler) => bowler.bowler);
+  const topTenEconomicalBowlers = finalBowlers.slice(0, 10);
 
   return topTenEconomicalBowlers;
 };

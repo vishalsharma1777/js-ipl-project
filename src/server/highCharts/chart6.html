@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <title>HIGHEST POTM WINNER PER SEASON</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  </head>
+  <body>
+    <div id="chart-6"></div>
+    <div style="text-align: center">
+      <a href="http://localhost:5000"><button>HOME</button></a></br>
+    </div>
+    <script>
+      fetch('http://localhost:5000/data/6')
+        .then((response) => response.json())
+        .then((data) => {
+          const columnData = data;
+          console.log(columnData);
+          Highcharts.chart('chart-6', {
+            chart: {
+              type: 'pie'
+            },
+            title: {
+              text: 'HIGHEST POTM WINNER PER SEASON'
+            },
+            subtitle: {
+              text: 'Source: IPL Project'
+            },
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  enabled: true,
+                  inside: false
+                },
+                pointWidth: 25,
+                
+              },
+              groupPadding: 0
+            },
+            xAxis: {
+              type: 'category',
+              lineWidth: 1,
+              tickWidth: 1
+            },
+            yAxis: {
+              title: {
+                text: ''
+              },
+              lineWidth: 1,
+              tickWidth: 1
+            },
+            series: [
+              {
+                name: 'Number of Times',
+                data: columnData.map((dataItem) => ({
+                  name: dataItem.Season,
+                  y: dataItem.Number_Of_Times,
+                  label: `${dataItem.Season}, ${dataItem.Players} ${dataItem.Number_Of_Times} Times`
+                })),
+                dataLabels: {
+                  enabled: true,
+                  formatter: function () {
+                    return this.point.label;
+                  }
+                },
+              }
+            ]
+          });
+        })
+        .catch((error) => console.error('Error loading JSON data:', error));
+    </script>
+  </body>
+</html>

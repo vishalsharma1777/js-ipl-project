@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <title>TOP TEN ECONOMICAL BOWLERS</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+  <body>
+    <div id="chart-4"></div>
+    <div style="text-align: center">
+      <a href="http://localhost:5000"><button>HOME</button></a></br>
+    </div>
+    <script>
+      fetch('http://localhost:5000/data/4')
+        .then((response) => response.json())
+        .then((data) => {
+          const columnData = data;
+          console.log(columnData);
+
+          Highcharts.chart('chart-4', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'TOP TEN ECONOMICAL BOWLERS'
+            },
+            subtitle: {
+              text: 'Source: IPL Project'
+            },
+            xAxis: {
+              categories: columnData.map((item) => item.bowler),
+              crosshair: true
+            },
+            yAxis: {
+              min: 0,
+              title: {
+                text: 'ECONOMY'
+              }
+            },
+            plotOptions: {
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+            },
+            series: [
+              {
+                name: 'BOWLER',
+                data: columnData.map((item) => item.economy)
+              }
+            ]
+          });
+        })
+        .catch((error) => console.error('Error loading JSON data:', error));
+    </script>
+  </body>
+</html>

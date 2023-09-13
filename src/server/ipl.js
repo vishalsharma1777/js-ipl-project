@@ -9,10 +9,14 @@ console.log(outputFiles);
 
 const requestListener = function (req, res) {
   const urlByParts = req.url.split('/');
-  if (urlByParts[2] < 10) {
+  if (urlByParts[2] < 10 && urlByParts[1] === 'data') {
     res.setHeader('Content-Type', 'json');
     res.writeHead(200);
     res.end(readData(`src/public/output/${outputFiles[urlByParts[2] - 1]}`));
+  } else if (urlByParts[1] === 'chart' && urlByParts[2] < 10) {
+    res.setHeader('Content-Type', 'html');
+    res.writeHead(200);
+    res.end(readData(`src/server/highCharts/chart${urlByParts[2]}.html`));
   } else {
     res.setHeader('Content-Type', 'html');
     res.writeHead(200);

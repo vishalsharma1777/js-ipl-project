@@ -1,12 +1,42 @@
 [
-    "J Yadav",
-    "R Ashwin",
-    "Parvez Rasool",
-    "MC Henriques",
-    "Z Khan",
-    "MA Starc",
-    "GB Hogg",
-    "Sandeep Sharma",
-    "Bipul Sharma",
-    "IC Pandey"
+    {
+        "bowler": "J Yadav",
+        "economy": 4.142857142857143
+    },
+    {
+        "bowler": "R Ashwin",
+        "economy": 5.846153846153846
+    },
+    {
+        "bowler": "Parvez Rasool",
+        "economy": 6.2
+    },
+    {
+        "bowler": "MC Henriques",
+        "economy": 6.32
+    },
+    {
+        "bowler": "Z Khan",
+        "economy": 6.5
+    },
+    {
+        "bowler": "MA Starc",
+        "economy": 6.767441860465116
+    },
+    {
+        "bowler": "GB Hogg",
+        "economy": 6.857142857142857
+    },
+    {
+        "bowler": "Sandeep Sharma",
+        "economy": 7
+    },
+    {
+        "bowler": "Bipul Sharma",
+        "economy": 7.142857142857143
+    },
+    {
+        "bowler": "IC Pandey",
+        "economy": 7.193548387096774
+    }
 ]

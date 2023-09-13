@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MATCHES WON PER TEAM PER YEAR</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+  <body>
+    <div id="chart-2"></div>
+    <div style="text-align: center">
+      <a href="http://localhost:5000"><button>HOME</button></a></br>
+    </div>
+    <script>
+      fetch('http://localhost:5000/data/2')
+        .then((response) => response.json())
+        .then((data) => {
+          const columnName = Object.keys(data);
+          const teams = new Set();
+          const dataValue = Object.values(data);
+          dataValue.forEach((item) => {
+            Object.keys(item).forEach((team) => {
+              if (team) teams.add(team);
+            });
+          });
+          const columnData = [...teams].reduce((acc, team) => {
+            const teamData = [];
+            dataValue.forEach((item) => {
+              if (item[team]) {
+                teamData.push(item[team]);
+              } else {
+                teamData.push(0);
+              }
+            });
+            acc.push({
+              name: team,
+              data: teamData
+            });
+            return acc;
+          }, []);
+          console.log(columnData);
+          Highcharts.chart('chart-2', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'MATCHES WON PER TEAM PER YEAR'
+            },
+            subtitle: {
+              text: 'Source: IPL Project'
+            },
+            xAxis: {
+              categories: columnName,
+              crosshair: true
+            },
+            yAxis: {
+              min: 5,
+              title: {
+                text: 'No. of Matches Won'
+              }
+            },
+            plotOptions: {
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+            },
+            series: columnData
+          });
+        })
+        .catch((error) => console.error('Error loading JSON data:', error));
+    </script>
+  </body>
+</html>

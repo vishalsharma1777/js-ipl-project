@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Number of matches per year</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+  <body>
+    <div id="chart-1"></div>
+    <div style="text-align: center">
+    <a href="http://localhost:5000"><button>HOME</button></a></br>
+  </div>
+    <script>
+      fetch('http://localhost:5000/data/1')
+        .then((response) => response.json())
+        .then((data) => {
+          const columnData = data;
+          Highcharts.chart('chart-1', {
+            chart: {
+              type: 'column'
+            },
+            title: {
+              text: 'Number of matches per year'
+            },
+            subtitle: {
+              text: 'Source: IPL Project'
+            },
+            xAxis: {
+              categories: Object.keys(columnData),
+              crosshair: true
+            },
+            yAxis: {
+              min: 0,
+              title: {
+                text: 'Number of matches'
+              }
+            },
+            plotOptions: {
+              column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+              }
+            },
+            series: [
+              {
+                name: 'Seasons',
+                data: Object.values(columnData)
+              }
+            ]
+          });
+        })
+        .catch((error) => console.error('Error loading JSON data:', error));
+    </script>
+  </body>
+</html>

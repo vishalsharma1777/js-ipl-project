@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <title>STRIKE RATE OF A BATSMAN FOR ALL SEASONS</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  </head>
+  <body>
+    <div id="chart-8"></div>
+    <select id="allBatsmen">
+      <option value="" disabled selected>Select a Batsman</option>
+    </select>
+    <button onclick="searchBatsman()">Check Strikerate</button>
+
+    <div style="text-align: center">
+      <a href="http://localhost:5000"><button>HOME</button></a></br>
+    </div>
+    <script>
+      fetch('http://localhost:5000/data/7')
+        .then((response) => response.json())
+        .then((fetchedData) => {
+          const allBatsmen = document.getElementById('allBatsmen');
+          const allBatsmenNames = [];
+          for (let player in fetchedData) {
+            allBatsmenNames.push(player);
+          }
+          for (let i = 0; i < allBatsmenNames.length; i++) {
+            const batsmanName = allBatsmenNames[i];
+            const option = document.createElement('option');
+            option.value = batsmanName;
+            option.text = batsmanName;
+            allBatsmen.appendChild(option);
+          }
+        })
+        .catch((error) => console.error('Error loading JSON data:', error));
+
+      async function searchBatsman() {
+        var batsmanName = document.getElementById('allBatsmen').value;
+        fetch('http://localhost:5000/data/7')
+          .then((response) => response.json())
+          .then((data) => {
+            const columnData = data[batsmanName];
+            Highcharts.chart('chart-8', {
+              chart: {
+                type: 'area'
+              },
+              title: {
+                text: `STRIKE RATE OF ${batsmanName} FOR ALL SEASONS`
+              },
+              subtitle: {
+                text: 'Source: IPL Project'
+              },
+              xAxis: {
+                categories: Object.keys(columnData),
+                crosshair: true
+              },
+              yAxis: {
+                min: 0,
+                title: {
+                  text: 'Strikerate'
+                }
+              },
+              plotOptions: {
+                column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+                }
+              },
+              series: [
+                {
+                  name: 'Strikerate',
+                  data: Object.values(columnData)
+                }
+              ]
+            });
+          })
+          .catch((error) => console.error('Error loading JSON data:', error));
+      }
+    </script>
+  </body>
+</html>
